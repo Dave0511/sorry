@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Untuk Kamu</title>
+    <style>
+        :root {
+            --color-env: #ffb7c5;
+            --color-env2: #ff9aa2;
+            --color-paper: #ffffff;
+            --text-color: #d63447;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #fce4ec;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow: hidden;
+        }
+
+        .envelope-wrapper {
+            position: relative;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .envelope-wrapper:hover {
+            transform: scale(1.05);
+        }
+
+        .envelope {
+            position: relative;
+            width: 300px;
+            height: 200px;
+            background-color: var(--color-env);
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        /* Penutup Amplop */
+        .envelope::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            z-index: 2;
+            border-top: 130px solid var(--color-env2);
+            border-left: 150px solid transparent;
+            border-right: 150px solid transparent;
+            transform-origin: top;
+            transition: transform 0.4s ease-in-out;
+        }
+
+        /* Bagian Dalam Amplop */
+        .envelope::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            width: 0;
+            height: 0;
+            border-top: 100px solid transparent;
+            border-left: 150px solid var(--color-env);
+            border-right: 150px solid var(--color-env);
+            border-bottom: 100px solid var(--color-env);
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+            z-index: 3;
+        }
+
+        /* Kertas Pesan */
+        .paper {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 250px;
+            height: 180px;
+            background: var(--color-paper);
+            padding: 20px;
+            text-align: center;
+            box-sizing: border-box;
+            z-index: 1;
+            transition: bottom 0.6s ease-in-out;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 5px;
+            box-shadow: 0 -5px 10px rgba(0,0,0,0.05);
+        }
+
+        .paper p {
+            color: var(--text-color);
+            font-size: 1.2rem;
+            font-weight: bold;
+            line-height: 1.4;
+            margin: 0;
+        }
+
+        /* Animasi Terbuka */
+        .envelope-wrapper.open .envelope::before {
+            transform: rotateX(180deg);
+            z-index: 0;
+        }
+
+        .envelope-wrapper.open .paper {
+            bottom: 150px; /* Kertas naik ke atas */
+        }
+
+        .instruction {
+            position: absolute;
+            bottom: 50px;
+            color: #888;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="envelope-wrapper" id="envelope">
+        <div class="paper">
+            <p>Najwa, I'm sorry for what I've done, aku berjanji ga akan menyentuh yang namanya vape pod atopun rokok lagi seumur hidup aku, I LOVE YOU ❤️</p>
+        </div>
+        <div class="envelope"></div>
+    </div>
+
+    <div class="instruction">Klik amplopnya ya...</div>
+
+    <script>
+        const envelope = document.getElementById('envelope');
+        envelope.addEventListener('click', () => {
+            envelope.classList.toggle('open');
+        });
+    </script>
+</body>
+</html>
